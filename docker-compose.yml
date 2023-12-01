@@ -1,0 +1,18 @@
+version: '3'
+services:
+    opain-app:
+        container_name: opain-app
+        image: kmilo7/opainfront
+        restart: on-failure
+        ports: 
+            - 4200:4200
+        environment: 
+            WAIT_HOSTS: kmilo7/opainservice:8000
+        depends_on: 
+            - opain-services 
+    opain-services:
+        container_name: opain-services
+        image: kmilo7/opainservice
+        restart: always
+        ports:
+            - 8000:8000
